@@ -1,0 +1,632 @@
+
+            <!-- =====  BANNER STRAT  ===== -->
+            <div class="banner">
+                <div class="main-banner owl-carousel">
+                    <div class="item">
+                        <a href="category_page.php">
+                            <img src="images/main_banner1.jpg" alt="Main Banner" class="img-responsive" />
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="category_page.php">
+                            <img src="images/main_banner1.jpg" alt="Main Banner" class="img-responsive" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- =====  BANNER END  ===== -->
+            <!-- =====  SUB BANNER  STRAT ===== -->
+            <div class="row">
+                <div class="cms_banner mt_10">
+                    <div class="col-sm-6 mt_20">
+                        <div id="subbanner1" class="sub-hover">
+                            <a href="category_page.php">
+                                <img src="images/sub1.jpg" class="img-responsive">
+                            </a>
+                            <div class="bannertext">
+                                <h2>Full HD Camera</h2>
+                                <p class="mt_10">Different Resolutions</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mt_20">
+                        <div id="subbanner2" class="sub-hover">
+                            <a href="category_page.php">
+                                <img src="images/sub2.jpg" class="img-responsive" style="width: 100%;">
+                            </a>
+                            <div class="bannertext">
+                                <h2>smart watches</h2>
+                                <p class="mt_10">Most Popular Brands</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- =====  SUB BANNER END  ===== -->
+            <!-- =====  PRODUCT TAB  ===== -->
+            <div id="product-tab" class="mt_40">
+                <div class="heading-part mb_20 ">
+                    <h2 class="main_title">Top Products</h2>
+                </div>
+                <ul class="nav text-right">
+                    <li class="active"> <a href="#nArrivals" data-toggle="tab">New Arrivals</a> </li>
+                    <li><a href="#Bestsellers" data-toggle="tab">Bestsellers</a> </li>
+                    <li><a href="#Featured" data-toggle="tab">Featured</a> </li>
+                </ul>
+                <div class="tab-content clearfix box">
+                    <div class="tab-pane active" id="nArrivals">
+                        <div class="nArrivals owl-carousel">
+                            <?php
+                            $sqlLeftPro = mysqli_query($db, "SELECT * FROM products ORDER BY id DESC LIMIT 0, 8");
+                            while ($rowLeftPro = mysqli_fetch_array($sqlLeftPro))
+                            {
+                            ?>
+                            <div class="product-grid">
+                                <div class="item">
+                                    <div class="product-thumb">
+                                        <div class="image product-imageblock">
+                                            <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                <img data-name="product_image" src="admin/images/<?php echo $rowLeftPro['img']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" title="<?php echo $rowLeftPro['name']; ?>" class="img-responsive">
+                                                <img src="admin/images/<?php echo $rowLeftPro['img1']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" title="<?php echo $rowLeftPro['name']; ?>" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="caption product-detail text-left">
+                                            <h6 data-name="product_name" class="product-name mt_20">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>" title="<?php echo $rowLeftPro['name']; ?>">
+                                                    <?php echo $rowLeftPro['name']; ?>
+                                                </a>
+                                            </h6>
+
+                                            <span class="price">
+                                                <span class="amount">
+                                                    <span class="currencySymbol">
+                                                        $
+                                                    </span>
+                                                    <?php
+                                                    $total = 0;
+                                                    $total = $rowLeftPro['price']/100;
+                                                    $total = $total * $rowLeftPro['discount'];
+                                                    $total = $rowLeftPro['price'] - $total;
+                                                    echo $total;
+                                                    ?>
+                                                </span>
+                                            </span>
+                                            <div class="button-group text-center">
+                                                <div class="wishlist"><a href="wishlist.php?add=<?php echo $rowLeftPro['id']; ?>"><span>wishlist</span></a></div>
+                                                <div class="quickview"><a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>"><span>Quick View</span></a></div>
+                                                <div class="add-to-cart"><a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>"><span>Add to cart</span></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="Bestsellers">
+                        <div class="Bestsellers owl-carousel">
+
+                            <?php
+                            $sqlLeftPro = mysqli_query($db, "SELECT * FROM products ORDER BY views DESC LIMIT 0, 8");
+                            while ($rowLeftPro = mysqli_fetch_array($sqlLeftPro))
+                            {
+                                ?>
+                                <div class="product-grid">
+                                    <div class="item">
+                                        <div class="product-thumb">
+                                            <div class="image product-imageblock">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <img data-name="product_image" src="admin/images/<?php echo $rowLeftPro['img']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" title="<?php echo $rowLeftPro['name']; ?>" class="img-responsive">
+                                                    <img src="admin/images/<?php echo $rowLeftPro['img1']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" title="<?php echo $rowLeftPro['name']; ?>" class="img-responsive">
+                                                </a>
+                                            </div>
+                                            <div class="caption product-detail text-left">
+                                                <h6 data-name="product_name" class="product-name mt_20">
+                                                    <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>" title="<?php echo $rowLeftPro['name']; ?>">
+                                                        <?php echo $rowLeftPro['name']; ?>
+                                                    </a>
+                                                </h6>
+
+                                                <span class="price">
+                                                <span class="amount">
+                                                    <span class="currencySymbol">
+                                                        $
+                                                    </span>
+                                                    <?php
+                                                    $total = 0;
+                                                    $total = $rowLeftPro['price']/100;
+                                                    $total = $total * $rowLeftPro['discount'];
+                                                    $total = $rowLeftPro['price'] - $total;
+                                                    echo $total;
+                                                    ?>
+                                                </span>
+                                            </span>
+                                                <div class="button-group text-center">
+                                                    <div class="wishlist"><a href="wishlist.php?add=<?php echo $rowLeftPro['id']; ?>"><span>wishlist</span></a></div>
+                                                    <div class="quickview"><a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>"><span>Quick View</span></a></div>
+                                                    <div class="add-to-cart"><a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>"><span>Add to cart</span></a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                            ?>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="Featured">
+                        <div class="Featured owl-carousel">
+                            <?php
+                            $sqlLeftPro = mysqli_query($db, "SELECT * FROM products ORDER BY id ASC LIMIT 0, 8");
+                            while ($rowLeftPro = mysqli_fetch_array($sqlLeftPro))
+                            {
+                                ?>
+                                <div class="product-grid">
+                                    <div class="item">
+                                        <div class="product-thumb">
+                                            <div class="image product-imageblock">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <img data-name="product_image" src="admin/images/<?php echo $rowLeftPro['img']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" title="<?php echo $rowLeftPro['name']; ?>" class="img-responsive">
+                                                    <img src="admin/images/<?php echo $rowLeftPro['img1']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" title="<?php echo $rowLeftPro['name']; ?>" class="img-responsive">
+                                                </a>
+                                            </div>
+                                            <div class="caption product-detail text-left">
+                                                <h6 data-name="product_name" class="product-name mt_20">
+                                                    <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>" title="<?php echo $rowLeftPro['name']; ?>">
+                                                        <?php echo $rowLeftPro['name']; ?>
+                                                    </a>
+                                                </h6>
+
+                                                <span class="price">
+                                                <span class="amount">
+                                                    <span class="currencySymbol">
+                                                        $
+                                                    </span>
+                                                    <?php
+                                                    $total = 0;
+                                                    $total = $rowLeftPro['price']/100;
+                                                    $total = $total * $rowLeftPro['discount'];
+                                                    $total = $rowLeftPro['price'] - $total;
+                                                    echo $total;
+                                                    ?>
+                                                </span>
+                                            </span>
+                                                <div class="button-group text-center">
+                                                    <div class="wishlist"><a href="wishlist.php?add=<?php echo $rowLeftPro['id']; ?>"><span>wishlist</span></a></div>
+                                                    <div class="quickview"><a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>"><span>Quick View</span></a></div>
+                                                    <div class="add-to-cart"><a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>"><span>Add to cart</span></a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- =====  PRODUCT TAB  END ===== -->
+            <!-- =====  SUB BANNER  STRAT ===== -->
+            <div class="row">
+                <div class="cms_banner mt_40 mb_50">
+                    <div class="col-xs-12">
+                        <div id="subbanner3" class="banner sub-hover">
+                            <a href="category_page.php">
+                                <img src="images/sub3.png" alt="Sub Banner3" class="img-responsive">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- =====  SUB BANNER END  ===== -->
+            <!-- =====  product ===== -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="heading-part mb_20 ">
+                        <h2 class="main_title">Featured</h2>
+                    </div>
+                    <div id="featu-pro" class="owl-carousel">
+                        <ul class="row ">
+                            <?php
+                            $sqlLeftPro = mysqli_query($db, "SELECT * FROM products ORDER BY id ASC LIMIT 0, 3");
+                            while ($rowLeftPro = mysqli_fetch_array($sqlLeftPro))
+                            {
+                                ?>
+                                <li class="item product-layout-left mb_20">
+                                    <div class="product-list col-xs-4">
+                                        <div class="product-thumb">
+                                            <div class="image product-imageblock">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <img class="img-responsive" title="<?php echo $rowLeftPro['name']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" src="admin/images/<?php echo $rowLeftPro['img']; ?>">
+                                                    <img class="img-responsive" title="<?php echo $rowLeftPro['name']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" src="admin/images/<?php echo $rowLeftPro['img1']; ?>">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <div class="caption product-detail">
+                                            <h6 class="product-name">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <?php echo $rowLeftPro['name']; ?>
+                                                </a>
+                                            </h6>
+                                            <span class="price">
+                                        <span class="amount">
+                                            <span class="currencySymbol">$</span>
+                                            <?php
+                                            $total = 0;
+                                            $total = $rowLeftPro['price']/100;
+                                            $total = $total * $rowLeftPro['discount'];
+                                            $total = $rowLeftPro['price'] - $total;
+                                            echo $total;
+                                            ?>
+                                        </span>
+                                    </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                        <ul class="row "><?php
+                            $sqlLeftPro = mysqli_query($db, "SELECT * FROM products ORDER BY id ASC LIMIT 5, 5");
+                            while ($rowLeftPro = mysqli_fetch_array($sqlLeftPro))
+                            {
+                                ?>
+                                <li class="item product-layout-left mb_20">
+                                    <div class="product-list col-xs-4">
+                                        <div class="product-thumb">
+                                            <div class="image product-imageblock">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <img class="img-responsive" title="<?php echo $rowLeftPro['name']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" src="admin/images/<?php echo $rowLeftPro['img']; ?>">
+                                                    <img class="img-responsive" title="<?php echo $rowLeftPro['name']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" src="admin/images/<?php echo $rowLeftPro['img1']; ?>">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <div class="caption product-detail">
+                                            <h6 class="product-name">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <?php echo $rowLeftPro['name']; ?>
+                                                </a>
+                                            </h6>
+                                            <span class="price">
+                                        <span class="amount">
+                                            <span class="currencySymbol">$</span>
+                                            <?php
+                                            $total = 0;
+                                            $total = $rowLeftPro['price']/100;
+                                            $total = $total * $rowLeftPro['discount'];
+                                            $total = $rowLeftPro['price'] - $total;
+                                            echo $total;
+                                            ?>
+                                        </span>
+                                    </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                        <ul class="row "><?php
+                            $sqlLeftPro = mysqli_query($db, "SELECT * FROM products ORDER BY id ASC LIMIT 6, 6");
+                            while ($rowLeftPro = mysqli_fetch_array($sqlLeftPro))
+                            {
+                                ?>
+                                <li class="item product-layout-left mb_20">
+                                    <div class="product-list col-xs-4">
+                                        <div class="product-thumb">
+                                            <div class="image product-imageblock">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <img class="img-responsive" title="<?php echo $rowLeftPro['name']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" src="admin/images/<?php echo $rowLeftPro['img']; ?>">
+                                                    <img class="img-responsive" title="<?php echo $rowLeftPro['name']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" src="admin/images/<?php echo $rowLeftPro['img1']; ?>">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <div class="caption product-detail">
+                                            <h6 class="product-name">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <?php echo $rowLeftPro['name']; ?>
+                                                </a>
+                                            </h6>
+                                            <span class="price">
+                                        <span class="amount">
+                                            <span class="currencySymbol">$</span>
+                                            <?php
+                                            $total = 0;
+                                            $total = $rowLeftPro['price']/100;
+                                            $total = $total * $rowLeftPro['discount'];
+                                            $total = $rowLeftPro['price'] - $total;
+                                            echo $total;
+                                            ?>
+                                        </span>
+                                    </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="heading-part mb_20 ">
+                        <h2 class="main_title">Bestseller</h2>
+                    </div>
+                    <div id="bests-pro" class="owl-carousel"><ul class="row ">
+                            <?php
+                            $sqlLeftPro = mysqli_query($db, "SELECT * FROM products ORDER BY views DESC LIMIT 0, 3");
+                            while ($rowLeftPro = mysqli_fetch_array($sqlLeftPro))
+                            {
+                                ?>
+                                <li class="item product-layout-left mb_20">
+                                    <div class="product-list col-xs-4">
+                                        <div class="product-thumb">
+                                            <div class="image product-imageblock">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <img class="img-responsive" title="<?php echo $rowLeftPro['name']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" src="admin/images/<?php echo $rowLeftPro['img']; ?>">
+                                                    <img class="img-responsive" title="<?php echo $rowLeftPro['name']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" src="admin/images/<?php echo $rowLeftPro['img1']; ?>">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <div class="caption product-detail">
+                                            <h6 class="product-name">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <?php echo $rowLeftPro['name']; ?>
+                                                </a>
+                                            </h6>
+                                            <span class="price">
+                                        <span class="amount">
+                                            <span class="currencySymbol">$</span>
+                                            <?php
+                                            $total = 0;
+                                            $total = $rowLeftPro['price']/100;
+                                            $total = $total * $rowLeftPro['discount'];
+                                            $total = $rowLeftPro['price'] - $total;
+                                            echo $total;
+                                            ?>
+                                        </span>
+                                    </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                        <ul class="row "><?php
+                            $sqlLeftPro = mysqli_query($db, "SELECT * FROM products ORDER BY views DESC LIMIT 5, 5");
+                            while ($rowLeftPro = mysqli_fetch_array($sqlLeftPro))
+                            {
+                                ?>
+                                <li class="item product-layout-left mb_20">
+                                    <div class="product-list col-xs-4">
+                                        <div class="product-thumb">
+                                            <div class="image product-imageblock">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <img class="img-responsive" title="<?php echo $rowLeftPro['name']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" src="admin/images/<?php echo $rowLeftPro['img']; ?>">
+                                                    <img class="img-responsive" title="<?php echo $rowLeftPro['name']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" src="admin/images/<?php echo $rowLeftPro['img1']; ?>">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <div class="caption product-detail">
+                                            <h6 class="product-name">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <?php echo $rowLeftPro['name']; ?>
+                                                </a>
+                                            </h6>
+                                            <span class="price">
+                                        <span class="amount">
+                                            <span class="currencySymbol">$</span>
+                                            <?php
+                                            $total = 0;
+                                            $total = $rowLeftPro['price']/100;
+                                            $total = $total * $rowLeftPro['discount'];
+                                            $total = $rowLeftPro['price'] - $total;
+                                            echo $total;
+                                            ?>
+                                        </span>
+                                    </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                        <ul class="row "><?php
+                            $sqlLeftPro = mysqli_query($db, "SELECT * FROM products ORDER BY views DESC LIMIT 6, 6");
+                            while ($rowLeftPro = mysqli_fetch_array($sqlLeftPro))
+                            {
+                                ?>
+                                <li class="item product-layout-left mb_20">
+                                    <div class="product-list col-xs-4">
+                                        <div class="product-thumb">
+                                            <div class="image product-imageblock">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <img class="img-responsive" title="<?php echo $rowLeftPro['name']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" src="admin/images/<?php echo $rowLeftPro['img']; ?>">
+                                                    <img class="img-responsive" title="<?php echo $rowLeftPro['name']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" src="admin/images/<?php echo $rowLeftPro['img1']; ?>">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <div class="caption product-detail">
+                                            <h6 class="product-name">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <?php echo $rowLeftPro['name']; ?>
+                                                </a>
+                                            </h6>
+                                            <span class="price">
+                                        <span class="amount">
+                                            <span class="currencySymbol">$</span>
+                                            <?php
+                                            $total = 0;
+                                            $total = $rowLeftPro['price']/100;
+                                            $total = $total * $rowLeftPro['discount'];
+                                            $total = $rowLeftPro['price'] - $total;
+                                            echo $total;
+                                            ?>
+                                        </span>
+                                    </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="heading-part mb_20 ">
+                        <h2 class="main_title">New Item’s</h2>
+                    </div>
+                    <div id="new-pro" class="owl-carousel">
+                        <ul class="row ">
+                            <?php
+                            $sqlLeftPro = mysqli_query($db, "SELECT * FROM products ORDER BY id DESC LIMIT 0, 3");
+                            while ($rowLeftPro = mysqli_fetch_array($sqlLeftPro))
+                            {
+                                ?>
+                                <li class="item product-layout-left mb_20">
+                                    <div class="product-list col-xs-4">
+                                        <div class="product-thumb">
+                                            <div class="image product-imageblock">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <img class="img-responsive" title="<?php echo $rowLeftPro['name']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" src="admin/images/<?php echo $rowLeftPro['img']; ?>">
+                                                    <img class="img-responsive" title="<?php echo $rowLeftPro['name']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" src="admin/images/<?php echo $rowLeftPro['img1']; ?>">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <div class="caption product-detail">
+                                            <h6 class="product-name">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <?php echo $rowLeftPro['name']; ?>
+                                                </a>
+                                            </h6>
+                                            <span class="price">
+                                        <span class="amount">
+                                            <span class="currencySymbol">$</span>
+                                            <?php
+                                            $total = 0;
+                                            $total = $rowLeftPro['price']/100;
+                                            $total = $total * $rowLeftPro['discount'];
+                                            $total = $rowLeftPro['price'] - $total;
+                                            echo $total;
+                                            ?>
+                                        </span>
+                                    </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                        <ul class="row "><?php
+                            $sqlLeftPro = mysqli_query($db, "SELECT * FROM products ORDER BY id DESC LIMIT 5, 5");
+                            while ($rowLeftPro = mysqli_fetch_array($sqlLeftPro))
+                            {
+                                ?>
+                                <li class="item product-layout-left mb_20">
+                                    <div class="product-list col-xs-4">
+                                        <div class="product-thumb">
+                                            <div class="image product-imageblock">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <img class="img-responsive" title="<?php echo $rowLeftPro['name']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" src="admin/images/<?php echo $rowLeftPro['img']; ?>">
+                                                    <img class="img-responsive" title="<?php echo $rowLeftPro['name']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" src="admin/images/<?php echo $rowLeftPro['img1']; ?>">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <div class="caption product-detail">
+                                            <h6 class="product-name">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <?php echo $rowLeftPro['name']; ?>
+                                                </a>
+                                            </h6>
+                                            <span class="price">
+                                        <span class="amount">
+                                            <span class="currencySymbol">$</span>
+                                            <?php
+                                            $total = 0;
+                                            $total = $rowLeftPro['price']/100;
+                                            $total = $total * $rowLeftPro['discount'];
+                                            $total = $rowLeftPro['price'] - $total;
+                                            echo $total;
+                                            ?>
+                                        </span>
+                                    </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                        <ul class="row "><?php
+                            $sqlLeftPro = mysqli_query($db, "SELECT * FROM products ORDER BY id DESC LIMIT 6, 6");
+                            while ($rowLeftPro = mysqli_fetch_array($sqlLeftPro))
+                            {
+                                ?>
+                                <li class="item product-layout-left mb_20">
+                                    <div class="product-list col-xs-4">
+                                        <div class="product-thumb">
+                                            <div class="image product-imageblock">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <img class="img-responsive" title="<?php echo $rowLeftPro['name']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" src="admin/images/<?php echo $rowLeftPro['img']; ?>">
+                                                    <img class="img-responsive" title="<?php echo $rowLeftPro['name']; ?>" alt="<?php echo $rowLeftPro['name']; ?>" src="admin/images/<?php echo $rowLeftPro['img1']; ?>">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-8">
+                                        <div class="caption product-detail">
+                                            <h6 class="product-name">
+                                                <a href="product_detail_page.php?view=<?php echo $rowLeftPro['id']; ?>">
+                                                    <?php echo $rowLeftPro['name']; ?>
+                                                </a>
+                                            </h6>
+                                            <span class="price">
+                                        <span class="amount">
+                                            <span class="currencySymbol">$</span>
+                                            <?php
+                                            $total = 0;
+                                            $total = $rowLeftPro['price']/100;
+                                            $total = $total * $rowLeftPro['discount'];
+                                            $total = $rowLeftPro['price'] - $total;
+                                            echo $total;
+                                            ?>
+                                        </span>
+                                    </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- =====  product end  ===== -->
